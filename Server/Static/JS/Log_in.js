@@ -8,9 +8,9 @@ loginButton.addEventListener("click", (e) => {
     const username = loginForm.username.value;
     const password = loginForm.password.value;
 
-    if (username === "test" && password === "test") {
-        alert("You have successfully logged in.");
-    } else {
-        loginErrorMsg.style.opacity = 1;
-    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","/validate",true);
+    xhr.setRequestHeader("Content-Type","application/json");
+    xhr.send(JSON.stringify(username+"/"+password));
+    console.log(xhr);
 })
