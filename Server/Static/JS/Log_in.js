@@ -9,8 +9,18 @@ loginButton.addEventListener("click", (e) => {
     const password = loginForm.password.value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST","/validate",true);
+    xhr.open("POST","/",true);
     xhr.setRequestHeader("Content-Type","application/json");
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            let baseUrl = window.location.origin
+            window.location.replace(baseUrl + '/Log_in');
+        }
+        else if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 400){
+            loginErrorMsg.style.opacity = 1;
+        }
+    };
     xhr.send(JSON.stringify(username+"/"+password));
     console.log(xhr);
 })

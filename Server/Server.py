@@ -1,15 +1,26 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,redirect,url_for,Response
+import Magic_packet as MP
+
+username = "test"
+password = "test"
 
 app = Flask(__name__,template_folder="Templates")
 
-@app.route('/')
-def index():
+@app.route('/', methods=['POST'])
+def index_POST():
+    if request.method == "POST" and request.json == username + "/" + password:
+        MP.Magic_packet()
+        return Response("OK",200)
+    else:
+        return Response("invalid",400)
+
+@app.route('/',methods=['GET'])
+def index_GET():
     return render_template('Log_in.html')
 
-@app.route('/validate/', methods=['POST'])
-def validate():
-    if request.method == "POST":
-        print("test")
+@app.route('/Log_in',methods=['GET'])
+def Log_in():
     return render_template('Hemsida.html')
+
 if __name__ == '__main__':
     app.run(host='192.168.1.136', port='80', debug=True)# mapping 
