@@ -1,8 +1,8 @@
-from flask import Flask, render_template,request,redirect,url_for,Response
+from flask import Flask, render_template,request,Response
 import Magic_packet as MP
 
-username = "test"
-password = "test"
+username = "isak"
+password = "test123"
 
 app = Flask(__name__,template_folder="Templates")
 
@@ -18,9 +18,9 @@ def index_POST():
 def index_GET():
     return render_template('Log_in.html')
 
-@app.route('/Log_in',methods=['GET'])
+@app.route('/Log_in',methods=['GET','POST'])
 def Log_in():
     return render_template('Hemsida.html')
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.136', port='80', debug=True)# mapping 
+    app.run(host='', port='80', debug=True)
