@@ -1,8 +1,9 @@
 from flask import Flask, render_template,request,Response
 import Magic_packet as MP
+import Config as Config
 
-username = "isak"
-password = "test123"
+username = Config.username
+password = Config.password
 
 app = Flask(__name__,template_folder="Templates")
 
